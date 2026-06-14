@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SportLink - İlan Ver</title>
+    <style>
+        body {
+            background-color: #0b0b0b;
+            color: #FFFFFF;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .navbar {
+            width: 100%;
+            background-color: #111111;
+            border-bottom: 1px solid #222222;
+            padding: 15px 0;
+            display: flex;
+            justify-content: center;
+        }
+        .nav-konteyner {
+            width: 100%;
+            max-width: 800px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+            box-sizing: border-box;
+        }
+        .logo {
+            color: #00FF66;
+            font-size: 24px;
+            font-weight: bold;
+            text-decoration: none;
+        }
+        .nav-linkler {
+            display: flex;
+            gap: 20px;
+        }
+        .nav-link {
+            color: #aaaaaa;
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 500;
+        }
+        .nav-link:hover, .nav-link.aktif {
+            color: #00FF66;
+        }
+        .ana-icerik {
+            width: 100%;
+            max-width: 450px;
+            padding: 40px 20px;
+            box-sizing: border-box;
+        }
+        .ilan-kutu {
+            background-color: #141414;
+            padding: 35px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            border: 1px solid #222222;
+        }
+        h2 {
+            color: #00FF66;
+            margin-top: 0;
+            margin-bottom: 25px;
+            font-size: 24px;
+            text-align: center;
+        }
+        .grup {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #888888;
+            font-size: 14px;
+        }
+        input, textarea {
+            width: 100%;
+            padding: 12px;
+            background-color: #1c1c1c;
+            border: 1px solid #333333;
+            border-radius: 8px;
+            color: white;
+            box-sizing: border-box;
+            font-size: 15px;
+        }
+        textarea {
+            height: 100px;
+            resize: none;
+        }
+        input:focus, textarea:focus {
+            border-color: #00FF66;
+            outline: none;
+        }
+        button {
+            width: 100%;
+            padding: 14px;
+            background-color: #00FF66;
+            color: #111111;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        button:hover {
+            background-color: #00cc52;
+        }
+    </style>
+</head>
+<body>
+
+<div class="navbar">
+    <div class="nav-konteyner">
+        <a href="/ilanlar" class="logo">SportLink</a>
+        <div class="nav-linkler">
+            <a href="/ilanlar" class="nav-link">İlan Havuzu</a>
+            <a href="/ilan_ver" class="nav-link aktif">Yeni İlan Ver</a>
+            <a href="/profil" class="nav-link">Profilim</a>
+        </div>
+    </div>
+</div>
+
+<div class="ana-icerik">
+    <div class="ilan-kutu">
+        <h2>Yeni Spor İlanı Oluştur</h2>
+        <form action="/ilan_kaydet" method="POST">
+            <div class="grup">
+                <label>İlan Başlığı</label>
+                <input type="text" name="baslik" placeholder="Örn: Hentbol Kaleci Antrenörü" required>
+            </div>
+            <div class="grup">
+                <label>Spor Branşı</label>
+                <input type="text" name="brans" placeholder="Örn: Hentbol" required>
+            </div>
+            <div class="grup">
+                <label>Şehir</label>
+                <input type="text" name="sehir" placeholder="Örn: Ordu" required>
+            </div>
+            <div class="grup">
+                <label>İlan Detayı / Aranan Şartlar</label>
+                <textarea name="detay" placeholder="Görev tanımı ve aranan kriterler..." required></textarea>
+            </div>
+            <button type="submit">İlanı Yayınla</button>
+        </form>
+    </div>
+</div>
+
+</body>
+</html>

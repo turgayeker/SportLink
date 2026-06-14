@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SportLink - İlan Havuzu</title>
+    <style>
+        body {
+            background-color: #0b0b0b;
+            color: #FFFFFF;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        /* Yeni Premium Üst Menü */
+        .navbar {
+            width: 100%;
+            background-color: #111111;
+            border-bottom: 1px solid #222222;
+            padding: 15px 0;
+            display: flex;
+            justify-content: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .nav-konteyner {
+            width: 100%;
+            max-width: 800px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+            box-sizing: border-box;
+        }
+        .logo {
+            color: #00FF66;
+            font-size: 24px;
+            font-weight: bold;
+            text-decoration: none;
+            letter-spacing: 1px;
+        }
+        .nav-linkler {
+            display: flex;
+            gap: 20px;
+        }
+        .nav-link {
+            color: #aaaaaa;
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+        .nav-link:hover, .nav-link.aktif {
+            color: #00FF66;
+        }
+        .ana-icerik {
+            width: 100%;
+            max-width: 650px;
+            padding: 30px 20px;
+            box-sizing: border-box;
+        }
+        .filtre-alani {
+            background-color: #141414;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+            border: 1px solid #222222;
+        }
+        .filtre-form {
+            display: flex;
+            gap: 15px;
+        }
+        .filtre-grup {
+            flex: 1;
+        }
+        .filtre-input {
+            width: 100%;
+            padding: 12px;
+            background-color: #1c1c1c;
+            border: 1px solid #333333;
+            border-radius: 8px;
+            color: white;
+            box-sizing: border-box;
+        }
+        .filtre-input:focus {
+            border-color: #00FF66;
+            outline: none;
+        }
+        .ara-btn {
+            background-color: #00FF66;
+            color: #111111;
+            border: none;
+            padding: 0 25px;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .ara-btn:hover {
+            box-shadow: 0 0 15px rgba(0, 255, 102, 0.3);
+        }
+        .ilan-kart {
+            background-color: #141414;
+            border: 1px solid #222222;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            transition: 0.3s;
+        }
+        .ilan-kart:hover {
+            border-color: #333333;
+            transform: translateY(-2px);
+        }
+        .ilan-baslik {
+            color: #FFFFFF;
+            font-size: 22px;
+            margin-top: 0;
+            margin-bottom: 12px;
+        }
+        .ilan-etiketler {
+            margin-bottom: 15px;
+            display: flex;
+            gap: 10px;
+        }
+        .etiket {
+            background-color: #1c1c1c;
+            color: #00FF66;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 500;
+            border: 1px solid #222222;
+        }
+        .ilan-detay {
+            color: #aaaaaa;
+            font-size: 15px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        .basvur-btn {
+            background-color: #00FF66;
+            color: #111111;
+            border: none;
+            padding: 12px 15px;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 15px;
+            width: 100%;
+            transition: 0.3s;
+        }
+        .basvur-btn:hover {
+            background-color: #00cc52;
+        }
+    </style>
+</head>
+<body>
+
+<div class="navbar">
+    <div class="nav-konteyner">
+        <a href="/ilanlar" class="logo">SportLink</a>
+        <div class="nav-linkler">
+            <a href="/ilanlar" class="nav-link aktif">İlan Havuzu</a>
+            <a href="/ilan_ver" class="nav-link">Yeni İlan Ver</a>
+            <a href="/profil" class="nav-link">Profilim</a>
+        </div>
+    </div>
+</div>
+
+<div class="ana-icerik">
+    <div class="filtre-alani">
+        <form action="/ilanlar" method="GET" class="filtre-form">
+            <div class="filtre-grup">
+                <input type="text" name="arama_brans" class="filtre-input" placeholder="Branş Ara (Örn: Hentbol)">
+            </div>
+            <div class="filtre-grup">
+                <input type="text" name="arama_sehir" class="filtre-input" placeholder="Şehir Ara (Örn: Ordu)">
+            </div>
+            <button type="submit" class="ara-btn">Filtrele</button>
+        </form>
+    </div>
+
+    <div class="ilan-listesi">
+        {% if gelen_ilanlar %}
+            {% for ilan in gelen_ilanlar %}
+            <div class="ilan-kart">
+                <h2 class="ilan-baslik">{{ ilan.baslik }}</h2>
+                <div class="ilan-etiketler">
+                    <span>⚽ {{ ilan.brans }}</span>
+                    <span>📍 {{ ilan.sehir }}</span>
+                </div>
+                <p class="ilan-detay">{{ ilan.detay }}</p>
+                <button class="basvur-btn" onclick="alert('Başvurunuz başarıyla iletildi!')">Hızlı Başvur</button>
+            </div>
+            {% endfor %}
+        {% else %}
+            <p style="text-align: center; color: #666; margin-top: 40px;">Kriterlere uygun ilan bulunamadı.</p>
+        {% endif %}
+    </div>
+</div>
+
+</body>
+</html>
